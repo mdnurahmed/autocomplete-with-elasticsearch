@@ -14,9 +14,8 @@ func buildInsertItem(searchString string) string {
 }
 
 func getDocumentId(searchString string) string {
-	document := fmt.Sprintf(`{"search-text" : "%s","frequency":1,"expire":%d}`, searchString, searchString, time.Now().AddDate(0, 0, 1).Unix())
 	h := sha1.New()
-	h.Write([]byte(document))
+	h.Write([]byte(searchString))
 	bs := h.Sum(nil)
 	sEnc := b64.URLEncoding.EncodeToString(bs)
 	return sEnc
