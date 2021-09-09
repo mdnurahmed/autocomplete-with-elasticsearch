@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"fmt"
 	"strings"
 
 	"github.com/elastic/go-elasticsearch/v7"
@@ -65,8 +64,6 @@ func (e *ElasticSearchRepository) Search(searchString string) ([]string, error) 
 		e.es.Search.WithPretty(),
 	)
 	defer res.Body.Close()
-
-	fmt.Println(res)
 	curatedResult := []string{}
 	if err == nil && !res.IsError() {
 		var errCurated error
@@ -75,7 +72,6 @@ func (e *ElasticSearchRepository) Search(searchString string) ([]string, error) 
 			return []string{}, errCurated
 		}
 	}
-	fmt.Println(curatedResult)
 	return curatedResult, err
 }
 
@@ -85,9 +81,7 @@ func (e *ElasticSearchRepository) Delete() error {
 		Index: []string{e.IndexName},
 		Body:  strings.NewReader(deleteAllDocumentByQuery),
 	}
-	r, err := deleteRequest.Do(context.Background(), e.es)
-	fmt.Println("-----------------------")
-	fmt.Println(r)
+	_, err := deleteRequest.Do(context.Background(), e.es)
 	return err
 }
 

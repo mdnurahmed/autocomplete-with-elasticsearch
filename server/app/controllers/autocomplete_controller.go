@@ -3,7 +3,6 @@ package controllers
 import (
 	"autocomplete/app/DTO"
 	"autocomplete/app/services"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -75,9 +74,7 @@ func (a *AutocompleteController) Insert(c *gin.Context) {
 }
 
 func (a *AutocompleteController) Delete(c *gin.Context) {
-	fmt.Println("~~~~~~~~~~~~~~")
 	err := a.autocompleteService.Delete()
-	fmt.Println(err)
 	if err != nil {
 		log.WithFields(log.Fields{
 			"erro_message": err.Error(),
