@@ -3,6 +3,7 @@
 A simple scalabale implimentation of search autocomplete using elasticsearch 7 . On the backend I used Golang.
 
 This solution can suggest top N word based on search frequency .
+[Here is a blog post explaining this method in details](https://dev.to/mdnurahmed/simple-scalable-search-autocomplete-systems-1j18)
 
 ## How To Run
 Using Docker -
